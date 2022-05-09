@@ -7,9 +7,13 @@ export const Navbar = () => {
   return (
     <div id="nav-container">
       <nav>
-        <Instructions/>
-        <h1><span>Flag</span>le</h1>
         <div id='nav-left'>
+          <Instructions/>
+        </div>
+        <div id="title">
+          <h1><span>Flag</span>le</h1>
+        </div>
+        <div id='nav-right'>
           <Stats/>
           <Settings/>
         </div>

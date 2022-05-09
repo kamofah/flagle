@@ -36,31 +36,44 @@ nav {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  align-items: center;
+  /* align-items: center; */
   /* padding-left: 10px;
   padding-right: 10px; */
 }
 
-#nav-left {
+#title {
   display: flex;
+  justify-content: center;
+  width: 33%;
+  align-items: center;
+}
+
+#nav-right {
+  display: flex;
+  width: 33%;
+  justify-content: flex-end;
+  /* align-self: flex-end; */
+  /* align-items: flex-end;  */
+  /* padding-right: 10px; */
 }
 
 svg{
   font-size: 36px;
   cursor: pointer;
-  /* padding: 10px; */
+  padding: 10px;
 }
 
-#stats-container {
+/* #stats-container {
   margin-right: 25px;
 }
 
 #settings-container {
   margin-right: 25px;
-}
+} */
 
-#instructions-container{
-  margin-left: 75px;
+#nav-left{
+  display: flex;
+  width: 33%;
 }
 
 #flag-view-container {
@@ -110,8 +123,15 @@ svg{
 }
 
 #country-attempted {
-  width: 60%;
-  margin-right: 10px
+  min-width: 60%;
+  margin-right: 10px;
+  /* padding: 10px; */
+}
+
+#country-attempted p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 #continent {
