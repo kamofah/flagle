@@ -1,7 +1,7 @@
-import React from 'react'
-import { Instructions } from './Instructions'
-import { Stats } from './Stats'
-import { Settings } from './Settings'
+import React from 'react';
+import { Instructions } from './Instructions';
+import { Stats } from './Stats';
+import { Settings } from './Settings';
 
 export const Navbar = () => {
   return (
@@ -11,15 +11,14 @@ export const Navbar = () => {
           <Instructions/>
         </div>
         <div id="title">
-          <h1><span>Flag</span>le</h1>
+          <h1>Flagle</h1>
         </div>
         <div id='nav-right'>
           <Stats/>
           <Settings/>
-        </div>
-        
+        </div>  
       </nav>
     </div>
-  )
-}
+  );
+};
 

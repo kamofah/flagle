@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "countries-list": "^2.6.1",
     "country-flag-emoji": "^1.0.3",
+    "node-cron": "^3.0.0",
     "node-schedule": "^2.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -39,6 +40,8 @@
     ]
   },
   "devDependencies": {
-    "@iconify/react": "^3.2.1"
+    "@iconify/react": "^3.2.1",
+    "eslint": "^8.15.0",
+    "eslint-plugin-react": "^7.29.4"
   }
 }

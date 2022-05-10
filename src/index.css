@@ -6,7 +6,6 @@
   --accent: #0E0AB4;
 }
 
-
 * {
   background-color: black;
   color: white;
@@ -18,10 +17,6 @@ h1 {
   font-size: 36px;
 }
 
-span{
-  /* color: var(--accent); */
-}
-
 #nav-container {
   border-bottom: white solid;
   background-color: #090A0A;
@@ -29,16 +24,12 @@ span{
   display: flex;
   justify-content: center;
   align-items: center;
-  /* font-size: 36px; */
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  /* align-items: center; */
-  /* padding-left: 10px;
-  padding-right: 10px; */
 }
 
 #title {
@@ -52,9 +43,6 @@ nav {
   display: flex;
   width: 33%;
   justify-content: flex-end;
-  /* align-self: flex-end; */
-  /* align-items: flex-end;  */
-  /* padding-right: 10px; */
 }
 
 svg{
@@ -63,17 +51,10 @@ svg{
   padding: 10px;
 }
 
-/* #stats-container {
-  margin-right: 25px;
-}
-
-#settings-container {
-  margin-right: 25px;
-} */
-
 #nav-left{
   display: flex;
   width: 33%;
+  margin-left: 25px;
 }
 
 #flag-view-container {
@@ -125,7 +106,6 @@ svg{
 #country-attempted {
   min-width: 60%;
   margin-right: 10px;
-  /* padding: 10px; */
 }
 
 #country-attempted p {
