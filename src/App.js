@@ -10,19 +10,25 @@ const App = () => {
   // Gets Data about countrys
   const countryCodes = Object.keys(countriesList.countries);
   const countryData = countriesList.countries;
-  console.log(countriesList.languages);
+  const countryLanguages = countriesList.languages;
+  console.log(countryLanguages);
   const continentData = countriesList.continents;
   console.log(countryData);
-  let avaliableCountries, randomCountryIndex, randomCountry, flagCountry, flagEmoji, countryCurrency, continentCode, continent;
+  let avaliableCountries, randomCountryIndex, randomCountry, flagCountry, flagEmoji, countryCurrency, continentCode, continent, countryLangCode, countryLang;
+
+  //Creates a list of flags in random order
 
   // selects a country on random and gets the name, continent, flag, and currency
-  schedule.scheduleJob('00 00 12 * * 0-6', function(){
+  // schedule.scheduleJob('00 00 12 * * 0-6', function(){
+  schedule.scheduleJob('* */3 * * *', function(){
     avaliableCountries = countryCodes;
     randomCountryIndex = Math.floor(Math.random() * avaliableCountries.length);
     randomCountry = countryData[avaliableCountries[randomCountryIndex]];
     flagCountry = randomCountry.name;
     flagEmoji = randomCountry.emoji;
-    let countryLang = randomCountry.languages;
+    countryLangCode = randomCountry.languages[0];
+    console.log(countryLangCode);
+    countryLang = countryLanguages[countryLangCode].name;
     console.log(countryLang);
     countryCurrency = randomCountry.currency;
     console.log(countryCurrency);
@@ -65,7 +71,7 @@ const App = () => {
     <div className="App">
       <Navbar/>
       <FlagView flag={localStorage.getItem('flag')}/>
-      <PlayView country={flagCountry} continent={continent} currency={countryCurrency} countryData={countryData} continentData={continentData}/>
+      <PlayView country={flagCountry} countryData={countryData} continentData={continentData} languageData={countryLanguages} language={countryLang}/>
     </div>
   );
 };

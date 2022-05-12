@@ -104,7 +104,7 @@ svg{
 }
 
 #country-attempted {
-  min-width: 60%;
+  min-width: 40%;
   margin-right: 10px;
 }
 
@@ -115,12 +115,17 @@ svg{
 }
 
 #continent {
-  width: 30%;
+  width: 25%;
   margin-right: 10px;
 }
 
-#currency {
- width: 10%;
+#language {
+ width: 20%;
+ margin-right: 10px;
+}
+
+#firstLetter {
+  width: 5%;
 }
 
 #play-view-container {
