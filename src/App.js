@@ -20,7 +20,7 @@ const App = () => {
 
   // selects a country on random and gets the name, continent, flag, and currency
   // schedule.scheduleJob('00 00 12 * * 0-6', function(){
-  schedule.scheduleJob('* */3 * * *', function(){
+  schedule.scheduleJob('*/10 * * * *', function(){
     avaliableCountries = countryCodes;
     randomCountryIndex = Math.floor(Math.random() * avaliableCountries.length);
     randomCountry = countryData[avaliableCountries[randomCountryIndex]];
@@ -47,13 +47,12 @@ const App = () => {
       'averageGuesses': 0
     }));
     localStorage.setItem('attempts', JSON.stringify([
-      {countryAttempted: '', continent: '', currency: '', id: 0},
-      {countryAttempted: '', continent: '', currency: '', id: 1},
-      {countryAttempted: '', continent: '', currency: '', id: 2},
-      {countryAttempted: '', continent: '', currency: '', id: 3},
-      {countryAttempted: '', continent: '', currency: '', id: 4},
-      {countryAttempted: '', continent: '', currency: '', id: 5},
-
+      {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 0},
+      {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 1},
+      {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 2},
+      {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 3},
+      {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 4},
+      {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 5},
     ]));
     localStorage.setItem('currentGuess', JSON.stringify(0));
     localStorage.setItem('country', JSON.stringify(flagCountry));

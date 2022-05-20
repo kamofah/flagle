@@ -5,7 +5,6 @@ export const Attempt = (props) => {
   return (
     <div>
       <div id='disabled-attempt' style={{display: props.hide}}></div>
-        
       <div id='enabled-attempt' style={{display: props.show}}>
         <div id='country-attempted' className='country-content'style={{backgroundColor: props.countryColor}}>
           <p style={{backgroundColor: props.countryColor}}>{props.country}</p>
@@ -16,8 +15,8 @@ export const Attempt = (props) => {
         <div id='language' className='country-content' style={{backgroundColor: props.languageColor}}>
           <p style={{backgroundColor: props.languageColor}}>{props.language}</p>
         </div>
-        <div id='firstLetter' className='country-content' style={{backgroundColor: props.languageColor}}>
-          <p style={{backgroundColor: props.languageColor}}>{props.firstLetter}</p>
+        <div id='firstLetter' className='country-content' style={{backgroundColor: props.firstLetterColor}}>
+          <p style={{backgroundColor: props.firstLetterColor}}>{props.firstLetter}</p>
         </div>
       </div>
     </div>
@@ -33,5 +32,6 @@ Attempt.propTypes = {
   countryColor: PropTypes.string,
   continentColor: PropTypes.string,
   languageColor: PropTypes.string,
-  firstLetter: PropTypes.string
+  firstLetter: PropTypes.string,
+  firstLetterColor: PropTypes.string
 };
