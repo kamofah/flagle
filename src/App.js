@@ -20,7 +20,7 @@ const App = () => {
 
   // selects a country on random and gets the name, continent, flag, and currency
   // schedule.scheduleJob('00 00 12 * * 0-6', function(){
-  schedule.scheduleJob('*/10 * * * *', function(){
+  schedule.scheduleJob('0 0 * * *', function(){
     avaliableCountries = countryCodes;
     randomCountryIndex = Math.floor(Math.random() * avaliableCountries.length);
     randomCountry = countryData[avaliableCountries[randomCountryIndex]];

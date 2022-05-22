@@ -43,11 +43,7 @@ export const PlayView = (props) => {
     e.preventDefault();
     // Checks if the user still has a turn
     if(currentGuess < 6){
-      // console.log(JSON.stringify(guessInput));
-      // console.log(localStorage.getItem('country'));
-      
       //Display the result of the user if their attempt was incoorect
-      console.log(JSON.stringify(guessInput) !== localStorage.getItem('country'));
       let guessInputCountry = Object.values(props.countryData).filter(obj => {
         return obj.name === guessInput;
       });
@@ -55,9 +51,12 @@ export const PlayView = (props) => {
       if(JSON.stringify(guessInput) !== localStorage.getItem('country')){
         // fetches the data for the inputed country
         let updatedAttempts = [...attempts];
-        // sets the different areas (Country, continent, language, firstLetter) to the right 
+        // sets the different areas (Country, continent, language, firstLetter) to the right
         attemptColors[currentGuess].countryColor = '#DC143C';
-        console.log(props.language);
+        /*
+          TODO: Refactor the if else statements into a function that takes two parameters
+          The two paremeters represent the two things that we are comparing.
+        */
         if(props.continentData[guessInputCountry[0].continent] === JSON.parse(localStorage.getItem('continent'))){
           attemptColors[currentGuess].continentColor = '#50C878';
         } else {
