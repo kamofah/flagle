@@ -11,7 +11,7 @@ export const Navbar = () => {
           <Instructions/>
         </div>
         <div id="title">
-          <h1>Flagle</h1>
+          <h1 style={{textTransform: 'uppercase', letterSpacing: 0}}>flagle</h1>
         </div>
         <div id='nav-right'>
           <Stats/>

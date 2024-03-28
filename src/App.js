@@ -1,70 +1,61 @@
 import './App.css';
-import {React} from 'react';
-import { FlagView } from './Components/FlagView';
-import { Navbar } from './Components/Navbar';
-import { PlayView } from './Components/PlayView';
+import {React, useRef ,useEffect} from 'react';
+import { FlagView } from './components/FlagView.js';
+import { Navbar } from './components/Navbar.js';
+import { PlayView } from './components/PlayView.js';
 import countriesList from 'countries-list';
-const schedule = require('node-schedule');
+import resetAttempts from './utils/utils.js';
 
 const App = () => {
-  // Gets Data about countrys
+  // Actual Release Date of the game
+  // const releaseDate = new Date('2024-06-14');
+  const releaseDate = new Date('2024-03-29');
+  const gameNumber = useRef(Math.floor((new Date() - releaseDate) / (1000 * 60 * 60 * 24)));
+  const prevGameNumber = useRef(gameNumber.current);
+
+  console.log(releaseDate);
+  console.log(gameNumber);
   const countryCodes = Object.keys(countriesList.countries);
   const countryData = countriesList.countries;
   const countryLanguages = countriesList.languages;
-  console.log(countryLanguages);
   const continentData = countriesList.continents;
-  console.log(countryData);
-  let avaliableCountries, randomCountryIndex, randomCountry, flagCountry, flagEmoji, countryCurrency, continentCode, continent, countryLangCode, countryLang;
+  let avaliableCountries, randomCountryIndex, randomCountry, flagCountry, flagEmoji, continentCode, continent, countryLangCode, countryLang;
 
-  //Creates a list of flags in random order
+  localStorage.setItem('stats', JSON.stringify({
+    'currentStreak': 0,
+    'maxStreak': 0,
+    'guesses': { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, 'fail': 0 },
+    'gamesPlayed': 0,
+    'gamesWon': 0,
+    'winPercentage': 0,
+    'averageGuesses': 0
+  }));
 
-  // selects a country on random and gets the name, continent, flag, and currency
-  // schedule.scheduleJob('00 00 12 * * 0-6', function(){
-  schedule.scheduleJob('0 0 * * *', function(){
-    avaliableCountries = countryCodes;
-    randomCountryIndex = Math.floor(Math.random() * avaliableCountries.length);
-    randomCountry = countryData[avaliableCountries[randomCountryIndex]];
-    flagCountry = randomCountry.name;
-    flagEmoji = randomCountry.emoji;
-    countryLangCode = randomCountry.languages[0];
-    console.log(countryLangCode);
-    countryLang = countryLanguages[countryLangCode].name;
-    console.log(countryLang);
-    countryCurrency = randomCountry.currency;
-    console.log(countryCurrency);
-    continentCode = randomCountry.continent;
-    continent = continentData[continentCode];
-    console.log(flagCountry);
 
-    localStorage.setItem('flag', flagEmoji);
-    localStorage.setItem('stats', JSON.stringify({
-      'currentStreak': 0,
-      'maxStreak': 0,
-      'guesses': { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, 'fail': 0 },
-      'gamesPlayed': 0,
-      'gamesWon': 0,
-      'winPercentage': 0,
-      'averageGuesses': 0
-    }));
-    localStorage.setItem('attempts', JSON.stringify([
-      {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 0},
-      {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 1},
-      {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 2},
-      {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 3},
-      {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 4},
-      {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 5},
-    ]));
-    localStorage.setItem('currentGuess', JSON.stringify(0));
-    localStorage.setItem('country', JSON.stringify(flagCountry));
-    localStorage.setItem('continent', JSON.stringify(continent));
-    window.location.reload(false);
-  });
-
-  //Removes the selected country from the list of avaliable countries so that a country can not be selected twice 
-  // avaliableCountries.pop()
-  // if(avaliableCountries.length == 0){
-  //   avaliableCountries = countryCodes
-  // }
+  useEffect(() => {
+    console.log(localStorage.getItem('flag'));
+    if (gameNumber.current !== prevGameNumber.current) {
+      console.log('UseEffect Ran');
+      prevGameNumber.current = gameNumber.current;
+      // Other useEffect logic...
+      
+      // selects a country on random and gets the name, continent, flag, and currency
+      avaliableCountries = countryCodes;
+      randomCountryIndex = Math.floor(Math.random() * avaliableCountries.length);
+      randomCountry = countryData[avaliableCountries[randomCountryIndex]];
+      flagCountry = randomCountry.name;
+      console.log(flagCountry);
+      flagEmoji = randomCountry.emoji;
+      countryLangCode = randomCountry.languages[0];
+      countryLang = countryLanguages[countryLangCode].name;
+      continentCode = randomCountry.continent;
+      continent = continentData[continentCode];
+      localStorage.setItem('flag', flagEmoji);
+      resetAttempts();
+      localStorage.setItem('country', JSON.stringify(flagCountry));
+      localStorage.setItem('continent', JSON.stringify(continent));
+    }
+  }, [gameNumber.current]);
 
   return (
     <div className="App">
