@@ -3,7 +3,7 @@ import { FlagView } from './components/FlagView';
 import { Navbar } from './components/Navbar';
 import { PlayView } from './components/PlayView';
 import countriesList from 'countries-list';
-import {getFlagFromStorage, resetAttempts, setDefaultStats} from './utils/storage.js';
+import {getItemFromStorage, resetAttempts, setDefaultStats, setItemInStorage} from './utils/storage.js';
 
 
 
@@ -33,10 +33,13 @@ const App = () => {
       countryLang = countryLanguages[countryLangCode].name;
       continentCode = randomCountry.continent;
       continent = continentData[continentCode];
-      localStorage.setItem('flag', flagEmoji);
+      setItemInStorage('solution',
+        {
+          'flag': flagEmoji,
+          'country': flagCountry,
+          'continent': continent
+        });
       resetAttempts();
-      localStorage.setItem('country', JSON.stringify(flagCountry));
-      localStorage.setItem('continent', JSON.stringify(continent));
       window.location.reload();
     } else if (gameNumber != localStorage.getItem('gameNumber')){
       localStorage.setItem('gameNumber', JSON.stringify(gameNumber));
@@ -51,10 +54,13 @@ const App = () => {
       countryLang = countryLanguages[countryLangCode].name;
       continentCode = randomCountry.continent;
       continent = continentData[continentCode];
-      localStorage.setItem('flag', flagEmoji);
+      setItemInStorage('solution',
+        {
+          'flag': flagEmoji,
+          'country': flagCountry,
+          'continent': continent
+        });
       resetAttempts();
-      localStorage.setItem('country', JSON.stringify(flagCountry));
-      localStorage.setItem('continent', JSON.stringify(continent));
     }
 
   }, [gameNumber]);
@@ -62,7 +68,7 @@ const App = () => {
   return (
     <div className="App">
       <Navbar/>
-      <FlagView flag={getFlagFromStorage()}/>
+      <FlagView flag={getItemFromStorage('solution').flag}/>
       <PlayView 
         country={flagCountry} 
         countryData={countryData} 

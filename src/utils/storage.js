@@ -1,4 +1,4 @@
-export const resetAttempts = () => {
+const resetAttempts = () => {
   'use strict';
   localStorage.setItem('attempts', JSON.stringify([
     {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 0},
@@ -11,17 +11,21 @@ export const resetAttempts = () => {
   localStorage.setItem('currentGuess', JSON.stringify(0));
 };
 
-export const getStateFromStorage = (init, storageKey) => {
+const getStateFromStorage = (init, storageKey) => {
   let savedAttempts = localStorage.getItem(storageKey); 
   let stringifiedSavedAttempts = JSON.parse(savedAttempts);
   return stringifiedSavedAttempts || init;
 };
 
-export const getFlagFromStorage = () => {
-  return localStorage.getItem('flag');
+const getItemFromStorage = (name) => {
+  return JSON.parse(localStorage.getItem(name));
 };
 
-export const setDefaultStats = () => {
+const setItemInStorage = (name, value) => {
+  localStorage.setItem(name, JSON.stringify(value));
+};
+
+const setDefaultStats = () => {
   localStorage.setItem('stats', JSON.stringify({
     'currentStreak': 0,
     'maxStreak': 0,
@@ -31,6 +35,14 @@ export const setDefaultStats = () => {
     'winPercentage': 0,
     'averageGuesses': 0
   }));
+};
+
+module.exports = {
+  resetAttempts,
+  getStateFromStorage,
+  getItemFromStorage,
+  setItemInStorage,
+  setDefaultStats
 };
 
 
