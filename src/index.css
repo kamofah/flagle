@@ -57,19 +57,11 @@ svg{
   padding: 10px;
 }
 
-.disabled-attempt, .guess-container button  {
+.guess-container button  {
   background-color: var(--primary);
   width: 31.25rem;
   margin-top: 10px;
   height: 40px;
-}
-
-.enabled-attempt {
-  display: flex;
-  width: 31.25rem;
-  height: 40px;
-  margin-top: 10px;
-  
 }
 
 .country-content {

@@ -1,41 +1,45 @@
-import {React, useRef ,useEffect} from 'react';
+import {React, useEffect} from 'react';
 import { FlagView } from './components/FlagView';
 import { Navbar } from './components/Navbar';
 import { PlayView } from './components/PlayView';
 import countriesList from 'countries-list';
-import resetAttempts from './utils/utils.js';
+import {getFlagFromStorage, resetAttempts, setDefaultStats} from './utils/storage.js';
+
+
+
 
 const App = () => {
   // Actual Release Date of the game
-  // const releaseDate = new Date('2024-06-14');
-  const releaseDate = new Date('2024-03-29');
-  const gameNumber = useRef(Math.floor((new Date() - releaseDate) / (1000 * 60 * 60 * 24)));
-  const prevGameNumber = useRef(gameNumber.current);
-
-  console.log(releaseDate);
-  console.log(gameNumber);
+  // const releaseDate = new Date('06-14-2024');
+  const releaseDate = new Date('03-28-2024');
+  const gameNumber = Math.floor((new Date() - releaseDate) / (1000 * 60 * 60 * 24));
   const countryCodes = Object.keys(countriesList.countries);
   const countryData = countriesList.countries;
   const countryLanguages = countriesList.languages;
   const continentData = countriesList.continents;
   let avaliableCountries, randomCountryIndex, randomCountry, flagCountry, flagEmoji, continentCode, continent, countryLangCode, countryLang;
 
-  localStorage.setItem('stats', JSON.stringify({
-    'currentStreak': 0,
-    'maxStreak': 0,
-    'guesses': { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, 'fail': 0 },
-    'gamesPlayed': 0,
-    'gamesWon': 0,
-    'winPercentage': 0,
-    'averageGuesses': 0
-  }));
-
-
   useEffect(() => {
-    console.log(localStorage.getItem('flag'));
-    if (gameNumber.current !== prevGameNumber.current) {
-      console.log('UseEffect Ran');
-      prevGameNumber.current = gameNumber.current;
+    if(!localStorage.getItem('gameNumber')){
+      setDefaultStats();
+      localStorage.setItem('gameNumber', JSON.stringify(gameNumber));
+      // selects a country on random and gets the name, continent, flag, and currency
+      avaliableCountries = countryCodes;
+      randomCountryIndex = Math.floor(Math.random() * avaliableCountries.length);
+      randomCountry = countryData[avaliableCountries[randomCountryIndex]];
+      flagCountry = randomCountry.name;
+      flagEmoji = randomCountry.emoji;
+      countryLangCode = randomCountry.languages[0];
+      countryLang = countryLanguages[countryLangCode].name;
+      continentCode = randomCountry.continent;
+      continent = continentData[continentCode];
+      localStorage.setItem('flag', flagEmoji);
+      resetAttempts();
+      localStorage.setItem('country', JSON.stringify(flagCountry));
+      localStorage.setItem('continent', JSON.stringify(continent));
+      window.location.reload();
+    } else if (gameNumber != localStorage.getItem('gameNumber')){
+      localStorage.setItem('gameNumber', JSON.stringify(gameNumber));
       // selects a country on random and gets the name, continent, flag, and currency
       avaliableCountries = countryCodes;
       randomCountryIndex = Math.floor(Math.random() * avaliableCountries.length);
@@ -52,13 +56,19 @@ const App = () => {
       localStorage.setItem('country', JSON.stringify(flagCountry));
       localStorage.setItem('continent', JSON.stringify(continent));
     }
-  }, [gameNumber.current]);
+
+  }, [gameNumber]);
 
   return (
     <div className="App">
       <Navbar/>
-      <FlagView flag={localStorage.getItem('flag')}/>
-      <PlayView country={flagCountry} countryData={countryData} continentData={continentData} languageData={countryLanguages} language={countryLang}/>
+      <FlagView flag={getFlagFromStorage()}/>
+      <PlayView 
+        country={flagCountry} 
+        countryData={countryData} 
+        continentData={continentData} 
+        languageData={countryLanguages} 
+        language={countryLang}/>
     </div>
   );
 };

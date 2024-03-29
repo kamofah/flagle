@@ -1,20 +1,15 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Attempt } from './Attempt';
+import DisabledAttempt from './DisabledAttempt';
+import EnabledAttempt from './EnabledAttempt';
+import {getStateFromStorage} from '../utils/storage';
 
 export const PlayView = (props) => {
-
-  function getStateFromLocalStorage(init, storageKey){
-    let savedAttempts = localStorage.getItem(storageKey); 
-    let stringifiedSavedAttempts = JSON.parse(savedAttempts);
-    return stringifiedSavedAttempts || init;
-  }
-
   const [isDisabled, setIsDisabled] = useState(false);
-  const [currentGuess, setCurrentGuess] = useState(getStateFromLocalStorage(0, 'currentGuess'));
+  const [currentGuess, setCurrentGuess] = useState(getStateFromStorage(0, 'currentGuess'));
   const [guessInput, setGuessInput] = useState('');
-  const [attemptColors, setAttemptColors] = useState(getStateFromLocalStorage([
+  const [attemptColors, setAttemptColors] = useState(getStateFromStorage([
     {countryColor: '', continentColor: '', languageColor: '', firstLetterColor: ''},
     {countryColor: '', continentColor: '', languageColor: '', firstLetterColor: ''},
     {countryColor: '', continentColor: '', languageColor: '', firstLetterColor: ''},
@@ -23,7 +18,7 @@ export const PlayView = (props) => {
     {countryColor: '', continentColor: '', languageColor: '', firstLetterColor: ''},
   ], 'attemptColors'));
 
-  const [attempts, setAttempts] = useState(getStateFromLocalStorage([
+  const [attempts, setAttempts] = useState(getStateFromStorage([
     {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 0},
     {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 1},
     {countryAttempted: '', continent: '', language: '', firstLetter: '', id: 2},
@@ -100,9 +95,9 @@ export const PlayView = (props) => {
       {attempts.map((attempt) =>
       {
         if(attempt.countryAttempted && attempt.continent && attempt.language){
-          return <Attempt key={attempt.id} country={attempt.countryAttempted} firstLetter={attempt.countryAttempted.charAt(0)} continent={attempt.continent} language={attempt.language} hide="none" show="flex" countryColor={attemptColors[attempt.id].countryColor} continentColor={attemptColors[attempt.id].continentColor} languageColor={attemptColors[attempt.id].languageColor} firstLetterColor={attemptColors[attempt.id].firstLetterColor}/>;
+          return <EnabledAttempt key={attempt.id} attemptData={attempt} attemptColorData={attemptColors[attempt.id]} />;
         } else {
-          return <Attempt key={attempt.id} hide="flex" show="none"/>;
+          return <DisabledAttempt key={attempt.id}/>;
         }
       })}
       <form className='guess-container'>

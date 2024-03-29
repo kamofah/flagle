@@ -1,7 +1,7 @@
 import React from 'react';
-import { Instructions } from './Instructions';
-import { Stats } from './Stats';
-import { Settings } from './Settings';
+// import { Instructions } from './Instructions';
+// import { Stats } from './Stats';
+// import { Settings } from './Settings';
 
 export const Navbar = () => {
   return (
@@ -10,11 +10,11 @@ export const Navbar = () => {
         <div className="title">
           <h1 style={{textTransform: 'uppercase', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>flagle</h1>
         </div>
-        <div className='nav-right'>
+        {/* <div className='nav-right'>
           <Instructions/>
           <Stats/>
           <Settings/>
-        </div>  
+        </div>   */}
       </nav>
     </div>
   );
