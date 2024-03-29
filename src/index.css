@@ -12,6 +12,7 @@
   color: white;
   margin: 0;
   font-family: 'Nunito', sans-serif;
+  box-sizing: border-box;
 }
 
 body {
@@ -23,28 +24,28 @@ h1 {
   font-family: "Kode Mono", monospace;
 }
 
-#nav-container {
+.nav-container {
   border-bottom:  #3A3A3C solid;
-  height: 80px;
+  max-height: 80px;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
 nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  padding: 1rem;
   width: 100%;
 }
 
-#title {
+.title {
   display: flex;
   justify-content: center;
-  width: 33%;
+
   align-items: center;
 }
 
-#nav-right {
+.nav-right {
   display: flex;
   width: 33%;
   justify-content: flex-end;
@@ -56,44 +57,14 @@ svg{
   padding: 10px;
 }
 
-#nav-left{
-  display: flex;
-  width: 33%;
-  margin-left: 25px;
-}
-
-#flag-view-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-  padding: 10px;
-}
-
-#flag-view{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 31.25rem;
-  height: 384px;
-  /* border-radius: 5px; */
+.disabled-attempt, .guess-container button  {
   background-color: var(--primary);
-}
-
-#flag {
-  font-size: 250px;
-  background-color: var(--primary);
-}
-
-#disabled-attempt, #guess-container button  {
-  background-color: var(--primary);
-  /* border-radius: 5px; */
   width: 31.25rem;
   margin-top: 10px;
   height: 40px;
 }
 
-#enabled-attempt {
+.enabled-attempt {
   display: flex;
   width: 31.25rem;
   height: 40px;
@@ -106,36 +77,35 @@ svg{
   justify-content: center;
   align-items: center;
   border: white solid;
-  /* border-radius: 5px; */
 }
 
-#country-attempted {
+.country-attempted {
   min-width: 40%;
   max-width: 40%;
   margin-right: 10px;
 }
 
-#country-attempted p, #continent p {
+.country-attempted p, .continent p {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-#continent {
+.continent {
   min-width: 25%;
   margin-right: 10px;
 }
 
-#language {
+.language {
  min-width: 20%;
  margin-right: 10px;
 }
 
-#firstLetter {
+.firstLetter {
   min-width: 5%;
 }
 
-#play-view-container {
+.play-view-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -143,21 +113,20 @@ svg{
   margin-bottom: 20px;
 }
 
-#choice-field {
+.choice-field {
   color: white;
-  width: 475px;
+  width: 500px;
   margin-top: 10px;
   padding: 10px;
   font-size: 16px ;
   border: 1px solid white;
-  /* border-radius: 5px; */
 }
 
-#choice-field :focus {
+.choice-field :focus {
   border: none;
 }
 
-#guess-container button {
+.guess-container button {
   width: 500px;
   background-color: var(--accent);
   font-size: 16px;
@@ -168,66 +137,58 @@ svg{
   border: none;
 }
 
-#guess-container button:hover {
+.guess-container button:hover {
   background-color: #222121;
   cursor: pointer;
 }
 
 /* Mobile Devices */
 @media screen and (min-width: 320px) and (max-width: 480px) {
-  #disabled-attempt, #guess-container button  {
+  .disabled-attempt, .guess-container button  {
     background-color: var(--primary);
-    /* border-radius: 5px; */
     width: 360px;
     margin-top: 10px;
     height: 40px;
   }
 
-  #choice-field {
+  .choice-field {
     color: white;
     width: 340px;
     margin-top: 10px;
     padding: 10px;
     font-size: 16px ;
-    /* border-radius: 5px; */
   }
 
-  #country-attempted{
+  .country-attempted{
     max-width: 35%;
     min-width: 35%;
   }
 
-  #firstLetter {
+  .firstLetter {
     min-width: 8%;
   }
 
-  #flag-view {
+  .flag-view {
     height: 250px;
   }
 
-  #flag {
+  .flag {
     font-size: 130px;
   }
 
-  #flag-view{
+  .flag-view{
     width: 21.25rem;
   }
 
-  #enabled-attempt{
+  .enabled-attempt{
     font-size: .9rem;
     width: 21.25rem;
     margin-right: 20px;
   }
 
-  #continent {
+  .continent {
     padding: 5px;
   }
 }
 
-/* iPads, Tablets */
-/* @media screen {
-  
-} */
-
-/* Small Screens, Laptops */
 

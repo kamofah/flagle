@@ -1,8 +1,7 @@
-import './App.css';
 import {React, useRef ,useEffect} from 'react';
-import { FlagView } from './components/FlagView.js';
-import { Navbar } from './components/Navbar.js';
-import { PlayView } from './components/PlayView.js';
+import { FlagView } from './components/FlagView';
+import { Navbar } from './components/Navbar';
+import { PlayView } from './components/PlayView';
 import countriesList from 'countries-list';
 import resetAttempts from './utils/utils.js';
 
@@ -37,8 +36,6 @@ const App = () => {
     if (gameNumber.current !== prevGameNumber.current) {
       console.log('UseEffect Ran');
       prevGameNumber.current = gameNumber.current;
-      // Other useEffect logic...
-      
       // selects a country on random and gets the name, continent, flag, and currency
       avaliableCountries = countryCodes;
       randomCountryIndex = Math.floor(Math.random() * avaliableCountries.length);

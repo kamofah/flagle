@@ -96,7 +96,7 @@ export const PlayView = (props) => {
   }
 
   return (
-    <div id='play-view-container'>
+    <div className='play-view-container'>
       {attempts.map((attempt) =>
       {
         if(attempt.countryAttempted && attempt.continent && attempt.language){
@@ -105,9 +105,9 @@ export const PlayView = (props) => {
           return <Attempt key={attempt.id} hide="flex" show="none"/>;
         }
       })}
-      <form id='guess-container'>
-        <input id='choice-field' list='countryNames' placeholder='Country/Territory' onChange={event => {setGuessInput(event.target.value);}} onKeyPress={(e) => { e.key === 'Enter' && updateAttemptComponent(e);}} disabled={isDisabled}/>
-        <datalist id='countryNames'>
+      <form className='guess-container'>
+        <input className='choice-field' list='countryNames' placeholder='Country/Territory' onChange={event => {setGuessInput(event.target.value);}} onKeyPress={(e) => { e.key === 'Enter' && updateAttemptComponent(e);}} disabled={isDisabled}/>
+        <datalist className='countryNames'>
           {
             Object.values(props.countryData).map((country) => {
               return <option value={country.name} key={Object.values(props.countryData).indexOf(country)}/>;

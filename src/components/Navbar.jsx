@@ -5,15 +5,13 @@ import { Settings } from './Settings';
 
 export const Navbar = () => {
   return (
-    <div id="nav-container">
+    <div className="nav-container">
       <nav>
-        <div id='nav-left'>
+        <div className="title">
+          <h1 style={{textTransform: 'uppercase', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>flagle</h1>
+        </div>
+        <div className='nav-right'>
           <Instructions/>
-        </div>
-        <div id="title">
-          <h1 style={{textTransform: 'uppercase', letterSpacing: 0}}>flagle</h1>
-        </div>
-        <div id='nav-right'>
           <Stats/>
           <Settings/>
         </div>  
