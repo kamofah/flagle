@@ -17,44 +17,35 @@ const App = () => {
     try {
       const selectedCountryData = await selectCountry();
       [countryName, countryFlag, countryContinent, countryLanguage] = selectedCountryData;
-      console.log(countryName, countryFlag, countryContinent, countryLanguage);
     } catch (error) {
       console.error('Error fetching country data:', error);
     }
   };
 
-  useEffect( async () => {
+  const intializeGame = async () => {
     await fetchSolutionData();
-    console.log(countryFlag);
-    if(!localStorage.getItem('gameNumber')){
-      console.log('run 1');
-      setDefaultStats();
-      setItemInStorage('gameNumber', gameNumber);
-      setItemInStorage('solution',
-        {
-          'country': countryName,
-          'flag': countryFlag,
-          'continent': countryContinent,
-          'language': countryLanguage
-        });
-      resetAttempts();
-      console.log(getItemFromStorage('solution'));
+    setItemInStorage('gameNumber', gameNumber);
+    setItemInStorage('solution',
+      {
+        'country': countryName,
+        'flag': countryFlag,
+        'continent': countryContinent,
+        'language': countryLanguage
+      });
+    resetAttempts();
+  };
+
+  useEffect( () => {
+    const asyncUseEffectWrapper = async () => {
+      if(!localStorage.getItem('gameNumber')){
+        setDefaultStats();
+        await intializeGame();
+      } else if (gameNumber != parseInt(localStorage.getItem('gameNumber'))){
+        await intializeGame();
+      }
       setIsLoading(false);
-      // window.location.reload();
-    } else if (gameNumber != parseInt(localStorage.getItem('gameNumber'))){
-      console.log('run 2');
-      setItemInStorage('gameNumber', gameNumber);
-      setItemInStorage('solution',
-        {
-          'country': countryName,
-          'flag': countryFlag,
-          'continent': countryContinent,
-          'language': countryLanguage
-        });
-      resetAttempts();
-      console.log('2');
-    }
-    setIsLoading(false);
+    };
+    asyncUseEffectWrapper();
   }, [gameNumber]);
 
   return (
