@@ -16,7 +16,17 @@ const Flag = styled.div`
   align-items: center;
   background-color: var(--primary);
   font-size: 250px;
-  min-width: 35%;
+  width: 100%;
+
+
+  @media screen and (min-width: 769px) {
+      font-size: 350px
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 900px;
+    font-size: 400px
+  }
 `;
 export const FlagView = ({flag}) => {
   return (

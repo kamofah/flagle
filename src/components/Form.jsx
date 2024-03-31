@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const StyledForm = styled.form`
     background-color: var(--primary);
-    width: 31.25rem;
+    width: 100%;
     margin-top: 10px;
     height: 40px;
     margin-top: 10px;
@@ -12,14 +12,14 @@ const StyledForm = styled.form`
 
     .choice-field {
         color: white;
-        width: 500px;
+        width: 100%;
         padding: 10px;
         font-size: 16px ;
         border: 1px solid white;
     }
 
     button {
-        width: 500px;
+        width: 100%;
         font-family: "Kode Mono", monospace;
         background-color: var(--accent);
         font-size: 20px;
