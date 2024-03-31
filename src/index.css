@@ -93,12 +93,3 @@ svg{
   margin-bottom: 20px;
   padding: 15px;
 }
-
-/* Mobile Devices */
-@media screen and (min-width: 769px) {
-  Flag {
-    min-width: 50%;
-  }
-}
-
-
