@@ -36,7 +36,7 @@ export const validateUserAttempt = (userAttempt, correctSolution, currentAttempt
 };
 
 export const calcDistanceBetweenCordinates = (lat1, lon1, lat2, lon2) => {
-  const earthRadiusInKM = 6371; // km
+  const earthRadiusInKM = 6371;
   const dLatInRad = toRad(lat2-lat1);
   const dLonInRad = toRad(lon2-lon1);
   const lat1InRad = toRad(lat1);
@@ -53,7 +53,6 @@ export const calcDistanceBetweenCordinates = (lat1, lon1, lat2, lon2) => {
   return distance;
 };
 
-// Converts numeric degrees to radians
 function toRad(value) {
   return value * Math.PI / 180;
 }

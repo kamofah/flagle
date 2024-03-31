@@ -29,8 +29,5 @@ export const FlagView = ({flag}) => {
 };
 
 FlagView.propTypes = {
-  flag: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.elementType
-  ])
+  flag: PropTypes.any
 };

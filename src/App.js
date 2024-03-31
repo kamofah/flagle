@@ -5,7 +5,6 @@ import { PlayView } from './components/PlayView';
 import { RotatingLines } from 'react-loader-spinner';
 import {getItemFromStorage, resetAttempts, setDefaultStats, setItemInStorage} from './utils/storage';
 import {selectCountry } from './utils/misc';
-import { Stats } from './components/Stats';
 let countryFlag, countryName, countryContinent, countryLanguage;
 
 const App = () => {
@@ -14,19 +13,19 @@ const App = () => {
   const releaseDate = new Date('03-29-2024');
   const gameNumber = Math.floor((new Date() - releaseDate) / (1000 * 60 * 60 * 24));
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedCountry, setSelectedCountry] = useState([]);
-  const fetchData = async () => {
-    const selectedCountryData = await selectCountry();
-    console.log(selectedCountryData);
-    await setSelectedCountry(selectedCountryData);
-    console.log(selectedCountry);
-    [countryName, countryFlag, countryContinent, countryLanguage] = selectedCountry;
-    console.log(countryFlag);
+  const fetchSolutionData = async () => {
+    try {
+      const selectedCountryData = await selectCountry();
+      [countryName, countryFlag, countryContinent, countryLanguage] = selectedCountryData;
+      console.log(countryName, countryFlag, countryContinent, countryLanguage);
+    } catch (error) {
+      console.error('Error fetching country data:', error);
+    }
   };
 
-
-  useEffect(() => {
-    fetchData();
+  useEffect( async () => {
+    await fetchSolutionData();
+    console.log(countryFlag);
     if(!localStorage.getItem('gameNumber')){
       console.log('run 1');
       setDefaultStats();
@@ -41,9 +40,8 @@ const App = () => {
       resetAttempts();
       console.log(getItemFromStorage('solution'));
       setIsLoading(false);
-      window.location.reload();
-
-    } else if (gameNumber != localStorage.getItem('gameNumber')){
+      // window.location.reload();
+    } else if (gameNumber != parseInt(localStorage.getItem('gameNumber'))){
       console.log('run 2');
       setItemInStorage('gameNumber', gameNumber);
       setItemInStorage('solution',
@@ -54,13 +52,13 @@ const App = () => {
           'language': countryLanguage
         });
       resetAttempts();
+      console.log('2');
     }
     setIsLoading(false);
   }, [gameNumber]);
 
   return (
     <div className="App">
-      <Stats></Stats>
       <Navbar/>
       {
         isLoading ?
