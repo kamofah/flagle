@@ -1,7 +1,6 @@
 const api = 'https://restcountries.com/v3.1/';
 const apiIndepent = 'https://restcountries.com/v3.1/independent?status=true&fields=';
 
-
 const fetchCountriesData = async () => {
   const response = await fetch(`${api}/all`);
   const countries = await response.json();
@@ -16,8 +15,8 @@ const fetchCountryByName = async (countryName) => {
 
 const fetchCountryNames = async () => {
   const response = await fetch(`${apiIndepent}name`);
-  const continents = await response.json();
-  return continents;
+  const countryNames = await response.json();
+  return countryNames;
 };
 
 module.exports = {

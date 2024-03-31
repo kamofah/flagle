@@ -41,7 +41,6 @@ nav {
 .title {
   display: flex;
   justify-content: center;
-
   align-items: center;
 }
 
@@ -52,17 +51,17 @@ nav {
 }
 
 svg{
-  font-size: 36px;
+  font-size: 38px;
   cursor: pointer;
   padding: 10px;
 }
 
-.guess-container button  {
+/* .guess-container button  {
   background-color: var(--primary);
   width: 31.25rem;
   margin-top: 10px;
   height: 40px;
-}
+} */
 
 .country-content {
   display: flex;
@@ -105,34 +104,20 @@ svg{
   margin-bottom: 20px;
 }
 
-.choice-field {
+/* .choice-field {
   color: white;
   width: 500px;
   margin-top: 10px;
   padding: 10px;
   font-size: 16px ;
   border: 1px solid white;
-}
+} */
 
-.choice-field :focus {
+/* .choice-field :focus {
   border: none;
-}
+} */
 
-.guess-container button {
-  width: 500px;
-  background-color: var(--accent);
-  font-size: 16px;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-}
 
-.guess-container button:hover {
-  background-color: #222121;
-  cursor: pointer;
-}
 
 /* Mobile Devices */
 @media screen and (min-width: 320px) and (max-width: 480px) {

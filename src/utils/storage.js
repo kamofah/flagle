@@ -11,7 +11,13 @@ const resetAttempts = () => {
   localStorage.setItem('currentGuess', JSON.stringify(0));
 };
 
-const getStateFromStorage = (init, storageKey) => {
+const setUserAttemptData = (attempts, attemptColors, currentAttempt) => {
+  localStorage.setItem('attempts', JSON.stringify(attempts));
+  localStorage.setItem('attemptColors', JSON.stringify(attemptColors));
+  localStorage.setItem('currentAttempt', JSON.stringify(currentAttempt));
+};
+
+const getItemFromStorageDefault = (init, storageKey) => {
   let savedAttempts = localStorage.getItem(storageKey); 
   let stringifiedSavedAttempts = JSON.parse(savedAttempts);
   return stringifiedSavedAttempts || init;
@@ -39,7 +45,8 @@ const setDefaultStats = () => {
 
 module.exports = {
   resetAttempts,
-  getStateFromStorage,
+  setUserAttemptData,
+  getItemFromStorageDefault,
   getItemFromStorage,
   setItemInStorage,
   setDefaultStats
