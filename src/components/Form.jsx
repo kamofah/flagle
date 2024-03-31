@@ -7,11 +7,12 @@ const StyledForm = styled.form`
     width: 31.25rem;
     margin-top: 10px;
     height: 40px;
+    margin-top: 10px;
+
 
     .choice-field {
         color: white;
         width: 500px;
-        margin-top: 10px;
         padding: 10px;
         font-size: 16px ;
         border: 1px solid white;

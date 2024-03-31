@@ -38,13 +38,13 @@ export const PlayView = ({solution}) => {
     setCountries(Array(getListOfCountries()));
   }, [attempts, currentAttempt, attemptColors]);
 
-  function updateAttemptComponent(e){
+  const updateAttemptComponent = async (e) => {
     e.preventDefault();
-    
     // Checks if the user still has a turn
     if(currentAttempt < 6){
       // Fetch data on user entered country
-      const countryResponse = fetchCountryByName(guessInput);
+      const countryResponse = await fetchCountryByName(guessInput);
+      console.log(countryResponse.continents);
       const userAttemptContinent = formatContinentText(countryResponse.continents);
       const userAttemptLanguage = countryResponse.languages[0];
 
@@ -99,7 +99,11 @@ export const PlayView = ({solution}) => {
         //Display the result of the user if their attempt was correct
         let updatedAttempts = [...attempts];
         let updatedAttemptColors = [...attemptColors];
-        updatedAttemptColors[currentAttempt] = {countryColor: '#50C878', continentColor: '#50C878', languageColor: '#50C878', firstLetterColor: '#50C878'};
+        updatedAttemptColors[currentAttempt] = {
+          countryColor: '#50C878',
+          continentColor: '#50C878',
+          languageColor: '#50C878',
+          firstLetterColor: '#50C878'};
         updatedAttempts[currentAttempt] = solution;
         updatedAttempts[currentAttempt].countryAttempted = guessInput;
         setAttempts(updatedAttempts);
@@ -110,7 +114,7 @@ export const PlayView = ({solution}) => {
     }
     //Rests the Text Field
     e.target.value = '';
-  }
+  };
 
   return (
     <div className='play-view-container'>

@@ -24,36 +24,32 @@ h1 {
   font-family: "Kode Mono", monospace;
 }
 
-.nav-container {
-  border-bottom:  #3A3A3C solid;
-  max-height: 80px;
-  display: flex;
-  align-items: center;
-}
-
 nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom:  #3A3A3C solid;
+  height: 65px;
   padding: 1rem;
-  width: 100%;
 }
 
-.title {
+.nav-container {
   display: flex;
-  justify-content: center;
+  width: 100%;
+  justify-content: space-between;
   align-items: center;
 }
 
-.nav-right {
+.nav-options {
+  background-color: transparent;
   display: flex;
-  width: 33%;
-  justify-content: flex-end;
+  gap: 10px;
 }
 
 svg{
-  font-size: 38px;
+  background-color: transparent;
+  font-size: 32px;
   cursor: pointer;
-  padding: 10px;
 }
 
 /* .guess-container button  {

@@ -8,7 +8,7 @@ const fetchCountriesData = async () => {
 };
 
 const fetchCountryByName = async (countryName) => {
-  const response = await fetch(`${api}/name/${countryName}`);
+  const response = await fetch(`${api}name/${countryName}`);
   const country = await response.json();
   return country;
 };
