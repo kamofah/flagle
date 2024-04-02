@@ -49,23 +49,25 @@ const App = () => {
   }, [gameNumber]);
 
   return (
-    <div className="App">
+    <div>
       <Navbar/>
-      {
-        isLoading ?
-          <FlagView flag={
-            <RotatingLines
-              visible={true}
-              height="96"
-              width="96"
-              color="grey"
-              strokeWidth="5"
-              animationDuration="0.75"/>
-          }/>
-          :
-          <FlagView flag={getItemFromStorage('solution').flag }/>
-      }
-      <PlayView solution={getItemFromStorage('solution')}/>
+      <div className="App">
+        {
+          isLoading ?
+            <FlagView flag={
+              <RotatingLines
+                visible={true}
+                height="96"
+                width="96"
+                color="grey"
+                strokeWidth="5"
+                animationDuration="0.75"/>
+            }/>
+            :
+            <FlagView flag={getItemFromStorage('solution').flag }/>
+        }
+        <PlayView solution={getItemFromStorage('solution')}/>
+      </div>
     </div>
   );
 };

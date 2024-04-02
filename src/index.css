@@ -15,6 +15,10 @@
   box-sizing: border-box;
 }
 
+.App {
+  padding: 15px;
+}
+
 body {
   width: 100%;
 }

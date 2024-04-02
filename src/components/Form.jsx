@@ -19,19 +19,19 @@ const StyledForm = styled.form`
     }
 
     button {
-        width: 100%;
-        font-family: "Kode Mono", monospace;
-        background-color: var(--accent);
-        font-size: 20px;
-        letter-spacing: 2px;
-        font-weight: 700;
-        padding: 20px;
         display: flex;
         justify-content: center;
         align-items: center;
-        border: none;
-        margin-top: 15px;
+        font-family: "Kode Mono", monospace;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 2px;
         text-transform: uppercase;
+        background-color: var(--accent);
+        border: none;
+        width: 100%;
+        padding: 20px;
+        margin-top: 15px;
     }
 
     button:hover {
