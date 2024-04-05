@@ -4,7 +4,7 @@ import DisabledAttempt from './DisabledAttempt';
 import EnabledAttempt from './EnabledAttempt';
 import Form from './Form';
 import { useState, useEffect } from 'react';
-import {getItemFromStorage, getItemFromStorageDefault, setUserAttemptData} from '../utils/storage';
+import { getItemFromStorageDefault, setUserAttemptData} from '../utils/storage';
 import { getListOfCountries, validateUserAttempt } from '../utils/misc';
 import { fetchCountryByName } from '../api/country';
 import { formatContinentText } from '../utils/formatting';
@@ -44,52 +44,46 @@ export const PlayView = ({solution}) => {
     if(currentAttempt < 6){
       // Fetch data on user entered country
       const countryResponse = await fetchCountryByName(guessInput);
-      console.log(countryResponse.continents);
-      const userAttemptContinent = formatContinentText(countryResponse.continents);
-      const userAttemptLanguage = countryResponse.languages[0];
+      const userAttemptContinent = formatContinentText(countryResponse[0].continents);
+      const userAttemptLanguage = Object.values(countryResponse[0].languages)[0];
 
-      //Display the result of the user if their attempt was incoorect
-      // let guessInputCountry = countries.filter(country => {
-      //   return country === guessInput;
-      // })[0];
-
-      if(JSON.stringify(guessInput) !== solution.country){
+      if(JSON.stringify(guessInput.toLowerCase()) !== solution.country.toLowerCase()){
         // fetches the data for the inputed country
         let updatedAttempts = [...attempts];
-        // sets the different areas (Country, continent, language, firstLetter) to the right
+
+        // Sets color of country section to red since its incorrect
         attemptColors[currentAttempt].countryColor = '#DC143C';
-        /*
-          TODO: Refactor the if else statements into a function that takes two parameters
-          The two paremeters represent the two things that we are comparing.
-        */
+    
+        // Validates Continent
         validateUserAttempt(
-          formatContinentText(countryResponse.continents), 
-          getItemFromStorage('continent'), 
+          userAttemptContinent, 
+          solution.continent, 
           currentAttempt,
           attemptColors, 
           'continentColor');
 
-        // if(props.continentData[guessInputCountry[0].continent] === getItemFromStorage('continent')){
-        //   attemptColors[currentAttempt].continentColor = '#50C878';
-        // } else {
-        //   attemptColors[currentAttempt].continentColor = '#DC143C';
-        // }
-        // if(props.languageData[guessInputCountry[0].languages[0]].name === props.language){
-        //   attemptColors[currentAttempt].languageColor = '#50C878';
-        // } else {
-        //   attemptColors[currentAttempt].languageColor = '#DC143C';
-        // }
-        // if(guessInputCountry[0].name.charAt(0) === localStorage.getItem('country').charAt(1)){
-        //   attemptColors[currentAttempt].firstLetterColor = '#50C878';
-        // } else {
-        //   attemptColors[currentAttempt].firstLetterColor = '#DC143C';
-        // }
+        // Validates Language
+        validateUserAttempt(
+          userAttemptLanguage, 
+          solution.language, 
+          currentAttempt,
+          attemptColors, 
+          'languageColor');
+
+        // Validate First Letter
+        validateUserAttempt(
+          guessInput.charAt(0), 
+          solution.country.charAt(0), 
+          currentAttempt,
+          attemptColors, 
+          'firstLetterColor');
 
         //updates the attempts state
         updatedAttempts[currentAttempt] = {
           countryAttempted: guessInput,
           continent: userAttemptContinent,
           language: userAttemptLanguage,
+          firstLetter: guessInput.charAt(0),
           id: currentAttempt};
         setAttempts(updatedAttempts);
         setAttemptColors(attemptColors); 
@@ -105,7 +99,6 @@ export const PlayView = ({solution}) => {
           languageColor: '#50C878',
           firstLetterColor: '#50C878'};
         updatedAttempts[currentAttempt] = solution;
-        updatedAttempts[currentAttempt].countryAttempted = guessInput;
         setAttempts(updatedAttempts);
         setAttemptColors(updatedAttemptColors);
         setIsDisabled(true);
@@ -121,7 +114,10 @@ export const PlayView = ({solution}) => {
       {attempts.map((attempt) =>
       {
         if(attempt.countryAttempted && attempt.continent && attempt.language){
-          return <EnabledAttempt key={attempt.id} attemptData={attempt} attemptColorData={attemptColors[attempt.id]} />;
+          return <EnabledAttempt 
+            key={attempt.id} 
+            attemptData={attempt} 
+            attemptColorData={attemptColors[attempt.id]}/>;
         } else {
           return <DisabledAttempt key={attempt.id}/>;
         }

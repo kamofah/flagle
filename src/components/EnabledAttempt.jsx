@@ -4,9 +4,18 @@ import styled from 'styled-components';
 
 const StyledEnabledAttempt = styled.div`
   display: flex;
-  width: 31.25rem;
+  width: 100%;
   height: 40px;
   margin-top: 10px;
+
+  @media screen and (min-width: 769px) {
+    width: 36.5%
+  }
+
+  @media screen and (min-width: 1024px) {
+      width: 70%%
+  }
+
 `;
 
 export const EnabledAttempt = ({attemptData, attemptColorData}) => {

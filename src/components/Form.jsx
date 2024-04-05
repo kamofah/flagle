@@ -38,6 +38,10 @@ const StyledForm = styled.form`
         background-color: #222121;
         cursor: pointer;
     }
+
+    @media screen and (min-width: 769px) {
+      width: 36.5%
+    }
 `;
 
 export const Form = ({countries, isDisabled, onClickAction, onChangeAction}) => {

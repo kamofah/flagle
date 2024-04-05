@@ -24,8 +24,8 @@ const Flag = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
-    width: 900px;
-    font-size: 400px
+    width: 500px;
+    font-size: 200px
   }
 `;
 export const FlagView = ({flag}) => {
