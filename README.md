@@ -1,39 +1,10 @@
 # FLAGLE
  Game Description: Flagle is a flag-guessing game in which every day the user is presented with a flag and has six attempts to figure out the country of the flag depicted
 
-## Tech Stak
+### Tech Stack
 
 
 ### Responsiveness
 
 
-### `npm test`
-
-
-### `npm run build`
-
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-
-## Learn More
-
-
-### Code Splitting
-
-
-### Analyzing the Bundle Size
-
-### Making a Progressive Web App
-
-
-### Advanced Configuration
-
-
-### Deployment
-
-
-### `npm run build` fails to minify
 
