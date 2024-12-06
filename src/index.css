@@ -1,3 +1,99 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .country-content {
+    @apply flex items-center justify-center border border-solid border-white;
+  }
+}
+
+@layer base {
+  svg {
+    @apply cursor-pointer bg-transparent text-3xl;
+  }
+}
+
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap'); */
+
+/* * {
+  background-color: #121213;
+  color: white;
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  box-sizing: border-box;
+}
+
+
+body {
+  width: 100%;
+}
+
+h1 {
+  font-size: 2.25rem;
+  font-family: "Kode Mono", monospace;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom:  #3A3A3C solid;
+  height: 65px;
+  padding: 1rem;
+}
+
+.nav-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-options {
+  background-color: transparent;
+  display: flex;
+  gap: 10px;
+}
+
+.country-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: white solid;
+}
+
+.country-attempted {
+  min-width: 40%;
+  max-width: 40%;
+  margin-right: 10px;
+}
+
+.country-attempted p, .continent p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.continent {
+  min-width: 25%;
+  margin-right: 10px;
+}
+
+.language {
+ min-width: 20%;
+ margin-right: 10px;
+}
+
+.firstLetter {
+  min-width: 10%;
+}
+
+.play-view-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 15px;
+} */
