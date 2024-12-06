@@ -13,24 +13,13 @@ import React from 'react';
 
 export const Form = ({
   countries,
-  isDisabled,
+
   onClickAction,
-  onChangeAction,
+
 }) => {
   return (
     <form className="mt-2.5 h-10 w-full">
-      <input
-        className="w-full border border-solid border-white p-2.5 text-base text-white"
-        list="countryNames"
-        placeholder="Country/Territory"
-        onChange={(event) => {
-          onChangeAction(event.target.value);
-        }}
-        onKeyDown={(e) => {
-          e.key === 'Enter' && onClickAction(e);
-        }}
-        disabled={isDisabled}
-      />
+      
       <datalist className="countryNames">
         {countries.map((country) => {
           return (

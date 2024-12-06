@@ -238,9 +238,7 @@ export const PlayView: React.FC<PlayViewProps> = ({ solution }) => {
       })}
       <Form
         countries={countries}
-        isDisabled={isDisabled}
         onClickAction={updateAttemptComponent}
-        onChangeAction={setGuessInput}
       />
     </div>
   );
