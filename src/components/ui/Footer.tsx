@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className='flex flex-col text-white justify-end  items-center w-full uppercase'>
+    <footer className='flex flex-col text-white justify-end items-center w-full uppercase p-5'>
       <p>
         Developed By <span>Kwaku A.</span>
       </p>

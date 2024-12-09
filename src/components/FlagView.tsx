@@ -3,10 +3,8 @@ import React from 'react';
 export const FlagView = () => {
   // const {flagData} = useFlagData()
   return (
-    <div className="flex items-center justify-center">
-      <div className="flex w-full items-center justify-center bg-[#222121] text-[250px]">
+      <div className="flex w-full items-center justify-center bg-[#222121] text-[75px] lg:max-w-xl lg:text-[70px]  lg:py-10">
         {'🇬🇭'}
       </div>
-    </div>
   );
 };

@@ -1,19 +1,30 @@
 import { Navbar } from './components/Navbar';
 import { FlagView } from './components/FlagView';
-import Button from './components/ui/Button';
+// import { PlayView } from './components/PlayView.tsx';
 import Footer from './components/ui/Footer.tsx';
-import TextInput from './components/ui/TextInput.tsx';
+import Form from './components/Form.tsx';
+import DisabledAttempt from './components/DisabledAttempt.tsx';
+// import { getListOfCountries } from './utils/misc.js';
+
 
 const App = () => {
   return (
-    <div className="h-screen bg-[#121213]">
-      <div className="flex flex-col h-full p-4 gap-2.5">
-        <Navbar />
-        <FlagView ></FlagView>
-        <TextInput></TextInput>
-        <Button buttonText={'Guess'}/>
+    <div className="h-screen">
+      <div className="flex flex-1 justify-between h-full items-center flex-col p-4 gap-2.5 ">
+        <Navbar></Navbar>
+        <div className="flex flex-1 justify-center w-full items-center flex-col p-4 gap-2.5 ">
+          <FlagView ></FlagView>
+        
+          { [1,2,3,4,5,6].map( (attempt) => {
+            return <DisabledAttempt key={attempt.id} />;
+          })}
+          {/* <PlayView></PlayView> */}
+          {/* <DisabledAttempt></DisabledAttempt> */}
+          <Form countries={{}} onClickAction={() => {}}/>
+        </div>
         <Footer/>
       </div>
+      
     </div>
   );
 };
